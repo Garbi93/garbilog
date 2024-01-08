@@ -1,10 +1,13 @@
 package com.garbilog.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class PostCreate {
+    @NotBlank
+    private String title;
 
-    public String title;
-    public String content;
+    @NotBlank
+    private String content;
 }
