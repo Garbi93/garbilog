@@ -15,17 +15,17 @@ import java.util.Map;
 @RestController
 public class PostController {
     @PostMapping("/posts")
-    public Map<String, String> post(@RequestBody @Valid PostCreate params, BindingResult result) {
-        if (result.hasErrors()) {
-            List<FieldError> fieldErrors = result.getFieldErrors();
-            FieldError firstFieldError = fieldErrors.get(0);
-            String fieldName = firstFieldError.getField(); // title
-            String errorMessage = firstFieldError.getDefaultMessage(); // ..에러 메세지
-
-            Map<String, String> error =new HashMap<>();
-            error.put(fieldName, errorMessage);
-            return error;
-        }
+    public Map<String, String> post(@RequestBody @Valid PostCreate params) {
+//        if (result.hasErrors()) {
+//            List<FieldError> fieldErrors = result.getFieldErrors();
+//            FieldError firstFieldError = fieldErrors.get(0);
+//            String fieldName = firstFieldError.getField(); // title
+//            String errorMessage = firstFieldError.getDefaultMessage(); // ..에러 메세지
+//
+//            Map<String, String> error =new HashMap<>();
+//            error.put(fieldName, errorMessage);
+//            return error;
+//        }
         return Map.of();
     }
 }
