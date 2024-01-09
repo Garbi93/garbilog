@@ -1,5 +1,6 @@
 package com.garbilog.response;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-@RequiredArgsConstructor
+@Builder
 public class ErrorResponse {
 
     private final String code;
