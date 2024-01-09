@@ -1,5 +1,6 @@
 package com.garbilog.controller;
 
+import com.garbilog.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -19,15 +20,13 @@ public class ExceptionController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public Map<String, String> invalidRequestHandler(MethodArgumentNotValidException e) {
-        // MethodArgumentNotValidException
-        // e.getField()
-        FieldError fieldError =  e.getFieldError();
-        String field = fieldError.getField();
-        String message = fieldError.getDefaultMessage();
+    public ErrorResponse invalidRequestHandler(MethodArgumentNotValidException e) {
 
-        Map<String, String> response = new HashMap<>();
-        response.put(field, message);
+        ErrorResponse response = new ErrorResponse("400","잘못된요청입니다.");
+
+        for(FieldError fieldError : e.getFieldErrors()){
+            response.addValidation(fieldError.getField(), fieldError.getDefaultMessage());
+        }
         return response;
     }
 
